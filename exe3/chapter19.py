@@ -1,4 +1,4 @@
-#N-th Root using Newton-Raphson Method
+#1 N-th Root using Newton-Raphson Method
 
 def my_nth_root(x, n, tol):
     r = x
@@ -8,7 +8,7 @@ def my_nth_root(x, n, tol):
 print(my_nth_root(27, 3, 1e-6))
 print(my_nth_root(16, 4, 1e-6))
 
-# Fixed Point using Bisection Method
+#2 Fixed Point using Bisection Method
 def my_fixed_point(f, g, tol, max_iter):
     def F(x):
         return f(x) - g(x)
@@ -26,8 +26,16 @@ def my_fixed_point(f, g, tol, max_iter):
 f = lambda x: x**2
 g = lambda x: x
 print(my_fixed_point(f, g, 1e-6, 1000))
+#3 The bisection method fails for f(x)= 1/x
 
-#Bisection Method
+#שיטת הביסקציה נכשלת עבור
+#𝑓(𝑥)=1/𝑥
+ #עקב אי המשכיות ב-x=0.
+#חוסר המשכיות הזה גורם
+#f(x) להפר את ה-IVT, שהוא חיוני לשיטת הביסקציה כדי להבטיח את קיומו של שורש בתוך המרווח.
+#כתוצאה מכך, השיטה לא יכולה להפחית ביעילות את השגיאה או למצוא שורש במקרים כאלה
+
+#4 Bisection Method
 import numpy as np
 def my_bisection(f, a, b, tol):
     R, E = [], []
@@ -49,7 +57,7 @@ f2 = lambda x: np.sin(x) - np.cos(x)
 R2, E2 = my_bisection(f2, 0, 2, 1e-2)
 print(R2, E2)
 
-#Newton-Raphson Method
+#4.1 Newton-Raphson Method
 def my_newton(f, df, x0, tol):
     R, E = [x0], [abs(f(x0))]
     x = x0
